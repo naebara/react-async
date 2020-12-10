@@ -1,10 +1,21 @@
 import React from "react";
+import Tasklists from './Tasklists'
 
 export default class Projects extends React.Component {
-	render() {
-	  const projectsList = this.props.projects.map( project => {
-		return <div key={project.id}>{project.name}</div>
-	  })
-	  return <div>{projectsList}</div>
-	}
+    render() {
+
+        return this.props.projects.map(project => {
+            return <ul key={project.id}>
+
+                {project.name}
+                <ul >
+                    {
+                        project.taskLists.map(
+                            tasklist => <Tasklists key={tasklist.id} tl={tasklist} />
+                        )
+                    }
+                </ul>
+            </ul>
+        })
+    }
 }
